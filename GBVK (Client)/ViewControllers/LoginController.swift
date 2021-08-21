@@ -3,11 +3,14 @@
 //  GBVK (Client)
 //
 //  Created by Mark Nevmerzhitskiy on 11.08.2021.
-//
+//for git test
+//for git test2
+//for git test3
+
 
 import UIKit
 
-class LoginController: UIViewController {
+final class LoginController: UIViewController {
 
     @IBOutlet private var logScroll: UIScrollView!
     @IBOutlet private var logField: UITextField!
@@ -31,8 +34,8 @@ class LoginController: UIViewController {
             logAlertTwo.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(logAlertTwo, animated: true, completion: nil)
         }
-        
     }
+    
     
     // Когда клавиатура появляется
     @objc func keyboardWasShown(notification: Notification) {
