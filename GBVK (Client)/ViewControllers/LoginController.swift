@@ -10,7 +10,7 @@
 
 import UIKit
 
-class LoginController: UIViewController {
+final class LoginController: UIViewController {
 
     @IBOutlet private var logScroll: UIScrollView!
     @IBOutlet private var logField: UITextField!
@@ -34,8 +34,8 @@ class LoginController: UIViewController {
             logAlertTwo.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(logAlertTwo, animated: true, completion: nil)
         }
-        
     }
+    
     
     // Когда клавиатура появляется
     @objc func keyboardWasShown(notification: Notification) {
