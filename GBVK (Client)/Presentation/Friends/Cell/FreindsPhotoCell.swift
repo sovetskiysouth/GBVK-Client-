@@ -12,13 +12,9 @@ class FriendsPhotoCell: UICollectionViewCell {
     static let identifier = "friendsColletcionPhoto"
     
     @IBOutlet var imageFriends: UIImageView!
-    @IBOutlet var likeLabel: UILabel!
     
     func configure(_ photo: FriendsPhotoModel) {
         imageFriends.image = UIImage(named: photo.iconName)
-        likeLabel.text = "\(photo.countLike) like 👍"
     }
-    
-    
 }
 

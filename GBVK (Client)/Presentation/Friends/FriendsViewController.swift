@@ -44,6 +44,13 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = friendsTableView.dequeueReusableCell(withIdentifier: FriendsCell.identifier) as! FriendsCell
         cell.configure(friend: friends[indexPath.row])
+        cell.contentView.backgroundColor = .clear
+        cell.layer.cornerRadius = 20
+        cell.layer.masksToBounds = true
+        cell.layer.shadowOffset = CGSize(width: 10, height: 10)
+        cell.layer.shadowColor = UIColor.systemGreen.cgColor
+        cell.layer.shadowRadius = 10
+        cell.layer.shadowOpacity = 0.8
         return cell
     }
     

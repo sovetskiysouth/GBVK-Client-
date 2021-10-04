@@ -11,13 +11,12 @@ final class FavoriteGroupsViewController: UIViewController {
 
     @IBOutlet var FavoriteGroupsTableView: UITableView!
     
-    var storage: GroupStorage = GroupStorage()
     var favoriteGroups: [GroupModel] = []
         
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        favoriteGroups = storage.group
+        favoriteGroups = GroupStorage.shared.group
         FavoriteGroupsTableView.delegate = self
         FavoriteGroupsTableView.dataSource = self
     }

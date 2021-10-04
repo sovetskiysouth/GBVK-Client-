@@ -9,21 +9,21 @@ import UIKit
 
 class NewsCell: UITableViewCell {
     
+    static let identifier = "NewsCells"
+    
     @IBOutlet var NewsImage: UIImageView!
     @IBOutlet var NewsLebel: UILabel!
     @IBAction func likeButton(_ sender: UIButton) {
-        
     }
-    
     
     func configure(news: NewsModel) {
         NewsImage.image = UIImage(named: news.imageNews)
-        NewsImage.layer.cornerRadius = 30
-        NewsImage.clipsToBounds = true
         NewsLebel.text = news.textNews
-        
     }
-    
-    static let identifier = "NewsCells"
-
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        NewsImage.contentMode = .scaleAspectFill
+        NewsImage.layer.cornerRadius = 10
+        NewsImage.clipsToBounds = true
+    }
 }

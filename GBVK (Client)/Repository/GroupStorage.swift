@@ -8,11 +8,12 @@
 import UIKit
 
 class GroupStorage {
+    static var shared = GroupStorage()
     
- var group: [GroupModel]
- var allGroup: [GroupModel]
+    var group: [GroupModel]
+    var allGroup: [GroupModel]
 
-init() { group = [
+private init() { group = [
             GroupModel(avatarName: "Spring", nameGroup: "Springfield", group: [
                     GroupRowModel(temp: 12, date: "Date", iconName: "health"),
                     GroupRowModel(temp: 11, date: "Date", iconName: "weather"),

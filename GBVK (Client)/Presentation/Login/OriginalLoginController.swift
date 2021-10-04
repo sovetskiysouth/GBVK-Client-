@@ -1,30 +1,31 @@
 //
-//  ViewController.swift
+//  OriginalLoginController.swift
 //  GBVK (Client)
 //
-//  Created by Mark Nevmerzhitskiy on 11.08.2021.
-//for git test
-//for git test2
-//for git test3
-
+//  Created by Mark Nevmerzhitskiy on 08.09.2021.
+//
 
 import UIKit
 
-final class LoginController: UIViewController {
-
-    @IBOutlet private var logScroll: UIScrollView!
-    @IBOutlet private var logField: UITextField!
-    @IBOutlet private var passField: UITextField!
-    @IBAction func logButton(_ sender: UIButton) {
-        
-        let log = self.logField.text!
+class OriginalLoginController:UIViewController {
+    
+    @IBOutlet var WallpapersView: UIImageView!
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var appLabel: UILabel!
+    @IBOutlet var signView: UIView!
+    @IBOutlet var signLabel: UILabel!
+    @IBOutlet var loginField: UITextField!
+    @IBOutlet var passField: UITextField!
+    @IBOutlet var loginButton: UIButton!
+    @IBAction func loginButton(_ sender: Any) {
+        let log = self.loginField.text!
         let pass = self.passField.text!
         
         let logCheck = "Geek"
         let passCheck = "Brains"
         
         if log == logCheck && pass == passCheck {
-            performSegue(withIdentifier: "logSegue", sender: logButton(_:))
+            performSegue(withIdentifier: "logSegue", sender: loginButton(_:))
         } else if log == "" && pass == "" {
             let logAlertOne = UIAlertController(title: "Empty fields", message: "Please input your login and password", preferredStyle: .alert)
             logAlertOne.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -36,7 +37,6 @@ final class LoginController: UIViewController {
         }
     }
     
-    
     // Когда клавиатура появляется
     @objc func keyboardWasShown(notification: Notification) {
         
@@ -46,29 +46,45 @@ final class LoginController: UIViewController {
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: kbSize.height, right: 0.0)
         
         // Добавляем отступ внизу UIScrollView, равный размеру клавиатуры
-        self.logScroll?.contentInset = contentInsets
-        logScroll?.scrollIndicatorInsets = contentInsets
+        self.scrollView?.contentInset = contentInsets
+        scrollView?.scrollIndicatorInsets = contentInsets
     }
     
     //Когда клавиатура исчезает
     @objc func keyboardWillBeHidden(notification: Notification) {
         // Устанавливаем отступ внизу UIScrollView, равный 0
         let contentInsets = UIEdgeInsets.zero
-        logScroll?.contentInset = contentInsets
+        scrollView?.contentInset = contentInsets
     }
     
     @objc func hideKeyboard() {
-            self.logScroll?.endEditing(true)
+            self.scrollView?.endEditing(true)
         }
-
     
-    
-    
-    
-    //THE SISNEM FUNC
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        WallpapersView.image = #imageLiteral(resourceName: "Palm")
+        WallpapersView.contentMode = .scaleAspectFill
+        appLabel.textColor = .white
+        appLabel.text = "VK Client"
+        appLabel.layer.shadowOffset = CGSize(width: 15, height: 15)
+        appLabel.layer.shadowColor = UIColor.black.cgColor
+        appLabel.layer.shadowRadius = 10
+        appLabel.layer.shadowOpacity = 1
+        signView.layer.cornerRadius = 10
+        loginButton.backgroundColor = .link
+        loginButton.tintColor = .white
+        loginButton.layer.cornerRadius = 10
+        loginButton.clipsToBounds = true
+        loginField.placeholder = "LOGIN"
+        passField.placeholder = "PASSWORD"
+        passField.isSecureTextEntry = true
+        signView.layer.shadowOffset = CGSize(width: 15, height: 15)
+        signView.layer.shadowColor = UIColor.black.cgColor
+        signView.layer.shadowRadius = 10
+        signView.layer.shadowOpacity = 1
+        signView.layer.cornerRadius = 10
         
         // Подписываемся на два уведомления: одно приходит при появлении клавиатуры
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -78,8 +94,7 @@ final class LoginController: UIViewController {
         // Жест нажатия
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         // Присваиваем его UIScrollVIew
-        logScroll?.addGestureRecognizer(hideKeyboardGesture)
-        
+        scrollView?.addGestureRecognizer(hideKeyboardGesture)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,53 +102,5 @@ final class LoginController: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-}
-
-@IBDesignable extension UIButton {
-
-    @IBInspectable var cornerRadius: CGFloat {
-        set {
-            layer.cornerRadius = newValue
         }
-        get {
-            return layer.cornerRadius
-        }
-    }
-
-    @IBInspectable var radius: CGFloat {
-        set {
-            layer.shadowRadius = newValue
-        }
-        get {
-            return layer.shadowRadius
-        }
-    }
-
-    @IBInspectable var offset: CGSize {
-        set {
-            layer.shadowOffset = newValue
-        }
-        get {
-            return layer.shadowOffset
-        }
-    }
-
-    @IBInspectable var color: CGColor {
-        set {
-            layer.shadowColor = newValue
-        }
-        get {
-            return (layer.shadowColor)!
-        }
-    }
-
-    @IBInspectable var opacity: Float {
-        set {
-            layer.shadowOpacity = newValue
-        }
-        get {
-            return layer.shadowOpacity
-        }
-    }
 }

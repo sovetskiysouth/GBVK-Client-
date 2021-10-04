@@ -11,12 +11,11 @@ class AllGroupsViewController: UIViewController {
 
     @IBOutlet var AllGroupsTableView: UITableView!
     
-    var storage: GroupStorage = GroupStorage()
     var listAllGroups: [GroupModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        listAllGroups = storage.allGroup
+        listAllGroups = GroupStorage.shared.allGroup
         AllGroupsTableView.delegate = self
         AllGroupsTableView.dataSource = self
     }
